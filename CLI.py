@@ -1,20 +1,27 @@
 #from Functions import get_todos, Write_todos
-from Modules import Functions
+import Functions
 import time
 
 now=time.strftime("%d-%b %Y %H:%M-%S")
 print(f"It is {now}")
+
 prompt = "Enter add , show, edit, complete or exit:"
+
 while True:
     User_action = (input(prompt).strip())
 
     if User_action.startswith("add"):
         try:
             Task = User_action[4:]
+
             Task = Task.title()
+
             Todos= Functions.get_todos()
+
             Todos.append(Task + '\n' )
+
             Functions.Write_todos(Todos)
+
         except ValueError:
             continue
 
@@ -23,6 +30,7 @@ while True:
         for index,Todo in enumerate((Todos)):
             Todo = Todo.strip('\n')
             print(f"{index+1}:{Todo}")
+
     elif User_action.startswith('edit'):
         try:
             item_no= int(User_action[5:])
